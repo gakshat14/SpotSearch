@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SpotSearch</title>
+
+     <!-- Linking css files --> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Oleo+Script|Courgette" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body ng-app="spotSearchApp" ng-controller="mainController">
+
+    <!-- Setting up the Nav bar -->
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">&nbsp;&nbsp;Spot Search</a>
+            <ul id="nav-mobile" class="right">
+                <li class="hide-on-med-and-down"><i class="material-icons profile">account_circle</i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li class="hide-on-med-and-down">&nbsp;&nbsp;{{userName}}&nbsp;&nbsp;&nbsp;&nbsp;</li>
+                <li><button style="background-color:white; color:black;" class="btn" ng-click="signOut();">Sign Out</button>&nbsp;&nbsp;&nbsp;&nbsp;</li>
+            </ul>
+        </div>
+  </nav>
+  
+  <!-- Setting up landing div -->
+  <div class="container signInContainer" ng-show="loginForm" ng-hide="searchForm">
+      <div class="row">
+          <div class="col s12 m6 l5 offset-m3 offset-l4 z-depth-4 center-align">
+            <h2>Spot Search</h2>
+            <h4>With Spot Search searching Spotify has never been easier. Millions of songs at your browser, What are you waiting for then? Sign in to get started</h4>
+            <button class="btn waves-effect" id="signIn" ng-click="login();">Sign In</button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Loader is declared over here -->
+  <div class="loading z-depth-5" ng-show="loadingSlider">
+    <div class="progress" >
+        <div class="indeterminate"></div>
+    </div>
+  </div>
+
+  <!-- Search for the song is setted up over here -->
+  <div class="container" ng-show="searchForm">
+      <div class="row">
+          <div class="col s12 m12 l9 queryDiv">
+              <input type="text" ng-model="searchQuery" placeholder="Search Song">
+              <button class="btn waves-effect" id="queryButton" ng-click="query();">Search</button>
+          </div>
+        </div>
+
+    <!-- Setting up the table to display results -->
+      <div class="row">
+          <div class="col s12 m12 l12">
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse"> Songs 
+                                <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'album.name'; sortReverse = !sortReverse"> Album 
+                                <span ng-show="sortType == 'album.name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'album.name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                        <th>
+                            <a href="#" ng-click="sortType = 'artists[0].name'; sortReverse = !sortReverse"> Artist 
+                                <span ng-show="sortType == 'artists[0].name' && !sortReverse" class="fa fa-caret-down"></span>
+                                <span ng-show="sortType == 'artists[0].name' && sortReverse" class="fa fa-caret-up"></span>
+                            </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="result in queryResult | orderBy:sortType:sortReverse">
+                        <td>{{result.name}}</td>
+                        <td>{{result.album.name}}</td>
+                        <td>{{result.artists[0].name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+          </div>
+      </div>
+  </div>
+
+  <!-- Scripts tag for loading scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+    <script src="scripts/libs/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.10/ngStorage.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+    <script src="scripts/libs/angular-spotify.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controller/mainController.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,101 @@
+.brand-logo, h2{
+    font-family: 'Oleo Script', cursive;
+    font-size: 45px !important;
+}
+nav{
+    background-color: #000000;
+}
+
+.profile{
+    font-size: 400% !important;
+}
+
+.row > .col > h2{
+    color: rgba(30, 215, 96, 1);
+}
+
+h4{
+    font-family: 'Courgette', cursive;
+}
+
+.signInContainer{
+    margin-top: 10%;
+    padding: 5px;
+}
+
+#signIn{
+    background-color: rgba(30, 215, 96, 1);
+    color: white;
+    margin-bottom: 10px;
+}
+.loading{
+    position: fixed;
+    width: 50%;
+    top: 45%;
+    left: 25%;
+    height: 10%;
+    /* opacity: 1.5 !important; */
+    background-color: black;
+}
+
+.progress{
+    margin-top: 17%;
+}
+
+#queryButton{
+    background-color: black;
+}
+
+.queryDiv{
+    margin-top: 20px;
+}
+
+@media(max-width:425px){
+    .queryDiv > input{
+        width: 65% !important;
+    }
+    .progress{
+        margin-top: 15%;
+    }
+}
+
+@media(max-width:768px){
+    .queryDiv > input{
+        width: 76% !important;
+    }
+    .loading{
+        width: 30%;
+        left: 36%;
+    }
+}
+
+@media(max-width:1024px){
+    .loading{
+        width: 23%;
+        left: 38%;
+    }
+
+    .progress{
+        margin-top: 15%;
+    }
+}
+@media(max-width:1440px){
+    .loading{
+        width: 23%;
+        left: 37%;
+    }
+    .progress{
+        margin-top: 10%;
+    }
+}
+
+@media(max-width:1920px){
+    .loading{
+        width: 15%;
+        left: 45%;
+    }
+}
+
+.queryDiv > button{
+    margin-left: 10px;
+}
